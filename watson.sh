@@ -27,7 +27,7 @@ wget -O /root/secData.txt "https://daitest.leibcorp.com/secData?company=$(< /roo
 dvar=`cat /root/secData.txt | grep -c 'none'`
 if [ $dvar -gt 0 ]
 then
-wget -O /root/10k.tgz https://raw.githubusercontent.com/ch0pper1/demo-scripts/main/10k.tgz
+wget -O /root/10k.tgz https://raw.githubusercontent.com/ch0pper1/demo-scripts/master/10k.tgz
 tar -xvzf /root/10k.tgz -C /root
 else
 mkdir /root/10k
@@ -35,11 +35,11 @@ wget -O /root/da/sec.js https://raw.githubusercontent.com/garrettrowe/watsonAuto
 (node /root/da/sec.js "$(< /root/secData.txt)"  > /var/log/secData.log 2>&1 ) &
 fi
 
-wget -O /root/.node-red/flows_$(< /root/resourceGroup.txt)-vsi.json https://raw.githubusercontent.com/ch0pper1/demo-scripts/main/flowsV2.json
-wget -O /root/discovery.tgz https://raw.githubusercontent.com/ch0pper1/demo-scripts/main/discoV2.tgz
+wget -O /root/.node-red/flows_$(< /root/resourceGroup.txt)-vsi.json https://raw.githubusercontent.com/ch0pper1/demo-scripts/master/flowsV3.json
+wget -O /root/discovery.tgz https://raw.githubusercontent.com/ch0pper1/demo-scripts/master/discoV2.tgz
 wget -O /root/finance_dte_model.zip https://ibm.box.com/shared/static/h7sca2gyrz0az58vicqlqijh1mvtl71u.zip
 
-wget -O /root/upsell.zip https://raw.githubusercontent.com/ch0pper1/demo-scripts/main/upsell.zip
+wget -O /root/upsell.zip https://raw.githubusercontent.com/ch0pper1/demo-scripts/master/upsell.zip
 tar -xvzf /root/discovery.tgz -C /root
 npm --prefix /root/discoveryService install /root/discoveryService
 

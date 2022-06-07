@@ -7,71 +7,6 @@
         "info": ""
     },
     {
-        "id": "1af88202.7f0c4e",
-        "type": "mqtt-broker",
-        "name": "",
-        "broker": "daitest.leibcorp.com",
-        "port": "1883",
-        "tls": "6e99437.9df403c",
-        "clientid": "",
-        "autoConnect": true,
-        "usetls": false,
-        "compatmode": false,
-        "protocolVersion": "4",
-        "keepalive": "60",
-        "cleansession": true,
-        "birthTopic": "",
-        "birthQos": "0",
-        "birthPayload": "",
-        "birthMsg": {},
-        "closeTopic": "",
-        "closeQos": "0",
-        "closePayload": "",
-        "closeMsg": {},
-        "willTopic": "",
-        "willQos": "0",
-        "willPayload": "",
-        "willMsg": {},
-        "sessionExpiry": ""
-    },
-    {
-        "id": "558e73b6.cd1fc4",
-        "type": "websocket-listener",
-        "path": "/ws/socket",
-        "wholemsg": "false"
-    },
-    {
-        "id": "181bab08.d1fc55",
-        "type": "websocket-listener",
-        "path": "/ws/agent",
-        "wholemsg": "false"
-    },
-    {
-        "id": "6e99437.9df403c",
-        "type": "tls-config",
-        "name": "",
-        "cert": "",
-        "key": "",
-        "ca": "",
-        "certname": "",
-        "keyname": "",
-        "caname": "",
-        "servername": "",
-        "verifyservercert": false
-    },
-    {
-        "id": "ac49de11.b35698",
-        "type": "websocket-listener",
-        "path": "/ws/discovery",
-        "wholemsg": "false"
-    },
-    {
-        "id": "a911bf18.d9ff4",
-        "type": "websocket-listener",
-        "path": "/ws/offers",
-        "wholemsg": "false"
-    },
-    {
         "id": "b30e3901.2d4168",
         "type": "http in",
         "z": "18e393cc.2511d4",
@@ -9369,6 +9304,10 @@
         "proxy": "",
         "authType": "",
         "senderr": false,
+        "credentials": {
+            "user": "",
+            "password": ""
+        },
         "x": 3470,
         "y": 2020,
         "wires": [
@@ -9458,6 +9397,10 @@
         "proxy": "",
         "authType": "",
         "senderr": false,
+        "credentials": {
+            "user": "",
+            "password": ""
+        },
         "x": 2110,
         "y": 2140,
         "wires": [
@@ -9637,6 +9580,10 @@
         "proxy": "",
         "authType": "",
         "senderr": false,
+        "credentials": {
+            "user": "",
+            "password": ""
+        },
         "x": 670,
         "y": 2180,
         "wires": [
@@ -11017,6 +10964,10 @@
         "proxy": "",
         "authType": "",
         "senderr": false,
+        "credentials": {
+            "user": "",
+            "password": ""
+        },
         "x": 2990,
         "y": 680,
         "wires": [
@@ -11315,6 +11266,10 @@
         "proxy": "",
         "authType": "",
         "senderr": false,
+        "credentials": {
+            "user": "",
+            "password": ""
+        },
         "x": 830,
         "y": 1980,
         "wires": [
@@ -11808,5 +11763,74 @@
                 "898bee5ded819f66"
             ]
         ]
+    },
+    {
+        "id": "1af88202.7f0c4e",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "daitest.leibcorp.com",
+        "port": "1883",
+        "tls": "6e99437.9df403c",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "compatmode": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": "",
+        "credentials": {
+            "user": "",
+            "password": ""
+        }
+    },
+    {
+        "id": "558e73b6.cd1fc4",
+        "type": "websocket-listener",
+        "path": "/ws/socket",
+        "wholemsg": "false"
+    },
+    {
+        "id": "181bab08.d1fc55",
+        "type": "websocket-listener",
+        "path": "/ws/agent",
+        "wholemsg": "false"
+    },
+    {
+        "id": "6e99437.9df403c",
+        "type": "tls-config",
+        "name": "",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "",
+        "keyname": "",
+        "caname": "",
+        "servername": "",
+        "verifyservercert": false
+    },
+    {
+        "id": "ac49de11.b35698",
+        "type": "websocket-listener",
+        "path": "/ws/discovery",
+        "wholemsg": "false"
+    },
+    {
+        "id": "a911bf18.d9ff4",
+        "type": "websocket-listener",
+        "path": "/ws/offers",
+        "wholemsg": "false"
     }
 ]

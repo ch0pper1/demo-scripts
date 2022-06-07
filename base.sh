@@ -25,9 +25,9 @@ wget -O /root/logosmall.png https://daitest.leibcorp.com/$(< /root/companycompac
 wget -O /root/logo.png https://daitest.leibcorp.com/$(< /root/companycompact.txt).png
 wget -O /root/ip.txt icanhazip.com
 
-wget -O /etc/apt/sources.list https://raw.githubusercontent.com/ch0pper1/demo-scripts/main/sources.list
-wget -O /tmp/zipcodes-table.csv https://raw.githubusercontent.com/ch0pper1/demo-scripts/main/zipcodes-table.csv
-wget -O /tmp/medprocedure-table.csv https://raw.githubusercontent.com/ch0pper1/demo-scripts/main/medprocedure-table.csv
+wget -O /etc/apt/sources.list https://raw.githubusercontent.com/ch0pper1/demo-scripts/master/sources.list
+wget -O /tmp/zipcodes-table.csv https://raw.githubusercontent.com/ch0pper1/demo-scripts/master/zipcodes-table.csv
+wget -O /tmp/medprocedure-table.csv https://raw.githubusercontent.com/ch0pper1/demo-scripts/master/medprocedure-table.csv
 
 echo "$(< /root/ip.txt)  $(< /root/instnum.txt).daitest.leibcorp.com" >> /etc/hosts
 
