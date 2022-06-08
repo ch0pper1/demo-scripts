@@ -368,7 +368,7 @@
         "type": "function",
         "z": "18e393cc.2511d4",
         "name": "",
-        "func": "\nmsg.url = \"https://daitest.leibcorp.com/\" + flow.get(\"instnum\") + \"-wa.txt\";\nmsg.rejectUnauthorized = false;\nreturn msg;\n",
+        "func": "\nmsg.url = \"https://daitest.leibcorp.com/scrape/\" + flow.get(\"instnum\") + \"-wa.txt\";\nmsg.rejectUnauthorized = false;\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
