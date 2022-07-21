@@ -1,0 +1,2673 @@
+{
+  "name": "PM Workshop Banking Assistant",
+  "type": "action",
+  "valid": true,
+  "status": "Available",
+  "created": "2022-06-16T12:38:11.811Z",
+  "updated": "2022-06-16T13:25:29.243Z",
+  "language": "en",
+  "skill_id": "d728aba3-fe14-4a52-bb97-0680bff98828",
+  "workspace": {
+    "actions": [
+      {
+        "steps": [
+          {
+            "step": "step_428",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "The CVV is a unique 3 digit code that you can find in the back of your credit or debit card."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_428"
+          }
+        ],
+        "title": "What is a CVV?",
+        "action": "action_10877",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_10877_intent_11874"
+        },
+        "variables": [
+          {
+            "title": "The CVV is a unique 3 digit code that you can find in the back o",
+            "variable": "step_428",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "action_23490",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "steps": [
+          {
+            "step": "step_805",
+            "handlers": [],
+            "resolver": {
+              "type": "search",
+              "response": {
+                "query": "",
+                "filter": "",
+                "query_type": "natural_language"
+              }
+            },
+            "variable": "step_805"
+          }
+        ],
+        "title": "What is private mortgage insurance?",
+        "action": "action_23490",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_23490_intent_26219"
+        },
+        "variables": [
+          {
+            "title": "No response",
+            "variable": "step_805",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "action_4966",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "steps": [
+          {
+            "step": "step_574",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Yes."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_574"
+          }
+        ],
+        "title": "Can I use my card in other countries?",
+        "action": "action_26054",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_26054_intent_26914"
+        },
+        "variables": [
+          {
+            "title": "Yes.",
+            "variable": "step_574",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "action_10877",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "steps": [
+          {
+            "step": "step_379",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Great, I have sent all the funds to your bitcoin account."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_379",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_905"
+                },
+                {
+                  "value": "Yes",
+                  "from_entity": "entity_10958"
+                }
+              ]
+            },
+            "next_step": "step_891"
+          },
+          {
+            "step": "step_540",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Would you like to withdraw from your checkings or savings account?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Savings account",
+                      "value": {
+                        "input": {
+                          "text": "Savings account"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Checking account",
+                      "value": {
+                        "input": {
+                          "text": "Checking account"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I didn't catch that. Select a valid option:"
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_16327",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_540",
+            "next_step": "step_719"
+          },
+          {
+            "step": "step_566",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "I'm sorry, you have to go to a teller to withdraw amounts over $1,000. Which branch did you want to go to today?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "options": [
+                    {
+                      "label": "First St",
+                      "value": {
+                        "input": {
+                          "text": "First St"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Main St",
+                      "value": {
+                        "input": {
+                          "text": "Main St"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I didn't catch that. Select a valid option:"
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_1761",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_566",
+            "condition": {
+              "gt": [
+                {
+                  "variable": "step_732"
+                },
+                {
+                  "scalar": "1000.00"
+                }
+              ]
+            },
+            "next_step": "step_834"
+          },
+          {
+            "step": "step_719",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Unfortunately, you cannot transfer directly from your savings account for security purposes. Please transfer to your checking account before proceeding."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_719",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_540"
+                },
+                {
+                  "value": "Savings account",
+                  "from_entity": "entity_16327"
+                }
+              ]
+            },
+            "next_step": "step_732"
+          },
+          {
+            "step": "step_730",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Main St is our premiere location, and is by appointment only. Let me transfer you to an agent to schedule an appointment."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Let's send you to an available agent."
+                },
+                "agent_unavailable": {
+                  "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                },
+                "message_to_human_agent": "The customer needs to come into the branch to make a withdrawal."
+              }
+            },
+            "variable": "step_730",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_566"
+                },
+                {
+                  "value": "Main St",
+                  "from_entity": "entity_1761"
+                }
+              ]
+            }
+          },
+          {
+            "step": "step_732",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "How much money would you like to withdraw?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I'm sorry, I did not catch that, please restate your response."
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "sys-currency",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_732",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_540"
+                },
+                {
+                  "value": "Checking account",
+                  "from_entity": "entity_16327"
+                }
+              ]
+            },
+            "next_step": "step_905"
+          },
+          {
+            "step": "step_834",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "The First St branch is open from 9-5 today, stop by anytime."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_834",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_566"
+                },
+                {
+                  "value": "First St",
+                  "from_entity": "entity_1761"
+                }
+              ]
+            },
+            "next_step": "step_730"
+          },
+          {
+            "step": "step_891",
+            "handlers": [],
+            "resolver": {
+              "type": "replay",
+              "clear": [
+                {
+                  "variable": "step_732"
+                },
+                {
+                  "variable": "step_905"
+                },
+                {
+                  "variable": "step_379"
+                }
+              ]
+            },
+            "variable": "step_891",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_905"
+                },
+                {
+                  "value": "No",
+                  "from_entity": "entity_10958"
+                }
+              ]
+            },
+            "next_step": "step_566"
+          },
+          {
+            "step": "step_905",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Let me confirm, you want to withdraw $"
+                          },
+                          {
+                            "variable": "step_732"
+                          },
+                          {
+                            "scalar": " from your checking account. Is that correct?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Yes",
+                      "value": {
+                        "input": {
+                          "text": "Yes"
+                        }
+                      }
+                    },
+                    {
+                      "label": "No",
+                      "value": {
+                        "input": {
+                          "text": "No"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I didn't catch that. Select a valid option:"
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_10958",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_905",
+            "condition": {
+              "lte": [
+                {
+                  "variable": "step_732"
+                },
+                {
+                  "scalar": "1000.00"
+                }
+              ]
+            },
+            "next_step": "step_950"
+          },
+          {
+            "step": "step_950",
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_950",
+            "next_step": "step_379"
+          }
+        ],
+        "title": "I want to withdraw money",
+        "action": "action_27664",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_27664_intent_10889"
+        },
+        "variables": [
+          {
+            "title": "Great, I have sent all the funds to your bitcoin account.",
+            "variable": "step_379",
+            "data_type": "any"
+          },
+          {
+            "title": "Would you like to withdraw from your checkings or savings accoun",
+            "variable": "step_540",
+            "data_type": "any"
+          },
+          {
+            "title": "I'm sorry, you have to go to a teller to withdraw amounts over $",
+            "variable": "step_566",
+            "data_type": "any"
+          },
+          {
+            "title": "Unfortunately, you cannot transfer directly from your savings ac",
+            "variable": "step_719",
+            "data_type": "any"
+          },
+          {
+            "title": "Main St is our premiere location, and is by appointment only. Le",
+            "variable": "step_730",
+            "data_type": "any"
+          },
+          {
+            "title": "How much money would you like to withdraw?",
+            "variable": "step_732",
+            "data_type": "currency"
+          },
+          {
+            "title": "The First St branch is open from 9-5 today, stop by anytime.",
+            "variable": "step_834",
+            "data_type": "any"
+          },
+          {
+            "title": "No response",
+            "variable": "step_891",
+            "data_type": "any"
+          },
+          {
+            "title": "Let me confirm, you want to withdraw ${variable} from your check",
+            "variable": "step_905",
+            "data_type": "any"
+          },
+          {
+            "title": "No response",
+            "variable": "step_950",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "fallback",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "steps": [
+          {
+            "step": "step_127",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "How much was the charge for?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I'm sorry, I did not catch that, please restate your response."
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "sys-currency",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_127",
+            "next_step": "step_277"
+          },
+          {
+            "step": "step_277",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "What was the date of the transaction?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "response_type": "date"
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I'm sorry, I did not catch that, please restate your response."
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "sys-date",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_277",
+            "next_step": "step_629"
+          },
+          {
+            "step": "step_517",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "I have submitted this dispute for you. Your ticket number is "
+                          },
+                          {
+                            "variable": "step_629_result_1",
+                            "variable_path": "body.id"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_517"
+          },
+          {
+            "step": "step_629",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Please hold while I submit a ticket to dispute this transaction for you…"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "callout",
+              "callout": {
+                "path": "/crm/v3/objects/tickets",
+                "type": "integration_interaction",
+                "method": "POST",
+                "internal": {
+                  "catalog_item_id": "bad4446f-8ac9-494b-baf8-8e806df9d35e"
+                },
+                "request_mapping": {
+                  "body": [
+                    {
+                      "value": {
+                        "expression": "\"ticket\""
+                      },
+                      "parameter": "properties.subject"
+                    },
+                    {
+                      "value": {
+                        "variable": "step_277"
+                      },
+                      "parameter": "properties.charge_date"
+                    },
+                    {
+                      "value": {
+                        "variable": "step_987"
+                      },
+                      "parameter": "properties.charge_name"
+                    },
+                    {
+                      "value": {
+                        "variable": "step_127"
+                      },
+                      "parameter": "properties.charge_amount"
+                    },
+                    {
+                      "value": {
+                        "expression": "1"
+                      },
+                      "parameter": "properties.hs_pipeline_stage"
+                    }
+                  ]
+                },
+                "result_variable": "step_629_result_1"
+              }
+            },
+            "variable": "step_629",
+            "next_step": "step_517"
+          },
+          {
+            "step": "step_987",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "What is the name of the business that you are disputing?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "question": {
+              "free_text": true,
+              "only_populate_when_prompted": true
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_987",
+            "next_step": "step_127"
+          }
+        ],
+        "title": "I want to dispute a transaction",
+        "action": "action_28116",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_28116_intent_28612"
+        },
+        "variables": [
+          {
+            "title": "How much was the charge for?",
+            "variable": "step_127",
+            "data_type": "currency"
+          },
+          {
+            "title": "What was the date of the transaction?",
+            "variable": "step_277",
+            "data_type": "date"
+          },
+          {
+            "title": "I have submitted this dispute for you. Your ticket number is {va",
+            "variable": "step_517",
+            "data_type": "any"
+          },
+          {
+            "title": "Please hold while I submit a ticket to dispute this transaction ",
+            "variable": "step_629",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_629_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "What is the name of the business that you are disputing?",
+            "variable": "step_987",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "action_27664",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "steps": [
+          {
+            "step": "step_122",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Excellent! A loan officer will be assigned and will reach out via email with next steps for your loan application."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_122",
+            "condition": {
+              "and": [
+                {
+                  "gte": [
+                    {
+                      "variable": "step_422"
+                    },
+                    {
+                      "scalar": "20"
+                    }
+                  ]
+                },
+                {
+                  "not": {
+                    "exists": {
+                      "variable": "step_510"
+                    }
+                  }
+                }
+              ]
+            },
+            "next_step": "step_924"
+          },
+          {
+            "step": "step_422",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "How much do you have for the down payment? Please enter this information as a percent %."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I'm sorry, I did not catch that, please restate your response."
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "sys-percentage",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_422",
+            "next_step": "step_952"
+          },
+          {
+            "step": "step_510",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Please select your loan officer"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Joan Smith",
+                      "value": {
+                        "input": {
+                          "text": "Joan Smith"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Greg Jones",
+                      "value": {
+                        "input": {
+                          "text": "Greg Jones"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Billy Wright",
+                      "value": {
+                        "input": {
+                          "text": "Billy Wright"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I didn't catch that. Select a valid option:"
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_47219",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_510",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_981"
+                },
+                {
+                  "value": "Yes",
+                  "from_entity": "entity_34077"
+                }
+              ]
+            },
+            "next_step": "step_887"
+          },
+          {
+            "step": "step_790",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "What is the estimated price of the home?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I'm sorry, I did not catch that, please restate your response."
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "sys-currency",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_790",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_887"
+                },
+                {
+                  "value": "Purchase a home",
+                  "from_entity": "entity_26233"
+                }
+              ]
+            },
+            "next_step": "step_422"
+          },
+          {
+            "step": "step_793",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Okay. You can find more information here on how to obtain PMI."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_793",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_924"
+                },
+                {
+                  "value": "No",
+                  "from_entity": "entity_23147"
+                }
+              ]
+            }
+          },
+          {
+            "step": "step_860",
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_860",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_981"
+                },
+                {
+                  "value": "No",
+                  "from_entity": "entity_34077"
+                }
+              ]
+            },
+            "next_step": "step_510"
+          },
+          {
+            "step": "step_887",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "What is the purpose for your loan?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Purchase a home",
+                      "value": {
+                        "input": {
+                          "text": "Purchase a home"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Cash-out refinance",
+                      "value": {
+                        "input": {
+                          "text": "Cash-out refinance"
+                        }
+                      }
+                    },
+                    {
+                      "label": "No cash-out refinance",
+                      "value": {
+                        "input": {
+                          "text": "No cash-out refinance"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Permanent-to-Construction",
+                      "value": {
+                        "input": {
+                          "text": "Permanent-to-Construction"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I didn't catch that. Select a valid option:"
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_26233",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_887",
+            "next_step": "step_790"
+          },
+          {
+            "step": "step_912",
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Let's send you to an available agent."
+                },
+                "agent_unavailable": {
+                  "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "step_912",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_924"
+                },
+                {
+                  "value": "Yes",
+                  "from_entity": "entity_23147"
+                }
+              ]
+            },
+            "next_step": "step_793"
+          },
+          {
+            "step": "step_924",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Since your down payment is less than 20%, we require private mortgage insurance (PMI). Would you like me to connect you to an agent to assist you further?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Yes",
+                      "value": {
+                        "input": {
+                          "text": "Yes"
+                        }
+                      }
+                    },
+                    {
+                      "label": "No",
+                      "value": {
+                        "input": {
+                          "text": "No"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I didn't catch that. Select a valid option:"
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_23147",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_924",
+            "condition": {
+              "lt": [
+                {
+                  "variable": "step_422"
+                },
+                {
+                  "scalar": "20"
+                }
+              ]
+            },
+            "next_step": "step_912"
+          },
+          {
+            "step": "step_952",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Excellent! "
+                          },
+                          {
+                            "variable": "step_510"
+                          },
+                          {
+                            "scalar": " will reach out via email on the next step for your application."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "context": {
+              "variables": []
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_952",
+            "condition": {
+              "and": [
+                {
+                  "gte": [
+                    {
+                      "variable": "step_422"
+                    },
+                    {
+                      "scalar": "20"
+                    }
+                  ]
+                },
+                {
+                  "exists": {
+                    "variable": "step_510"
+                  }
+                }
+              ]
+            },
+            "next_step": "step_122"
+          },
+          {
+            "step": "step_981",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Are you currently working with a loan officer?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Yes",
+                      "value": {
+                        "input": {
+                          "text": "Yes"
+                        }
+                      }
+                    },
+                    {
+                      "label": "No",
+                      "value": {
+                        "input": {
+                          "text": "No"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I didn't catch that. Select a valid option:"
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_34077",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_981",
+            "next_step": "step_860"
+          }
+        ],
+        "title": "I want to apply for a mortgage",
+        "action": "action_4966",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_4966_intent_42079"
+        },
+        "variables": [
+          {
+            "title": "Excellent! A loan officer will be assigned and will reach out vi",
+            "variable": "step_122",
+            "data_type": "any"
+          },
+          {
+            "title": "How much do you have for the down payment? Please enter this inf",
+            "variable": "step_422",
+            "data_type": "percentage"
+          },
+          {
+            "title": "Please select your loan officer",
+            "variable": "step_510",
+            "data_type": "any"
+          },
+          {
+            "title": "What is the estimated price of the home?",
+            "variable": "step_790",
+            "data_type": "currency"
+          },
+          {
+            "title": "Okay. You can find more information here on how to obtain PMI.",
+            "variable": "step_793",
+            "data_type": "any"
+          },
+          {
+            "title": "No response",
+            "variable": "step_860",
+            "data_type": "any"
+          },
+          {
+            "title": "What is the purpose for your loan?",
+            "variable": "step_887",
+            "data_type": "any"
+          },
+          {
+            "title": "No response",
+            "variable": "step_912",
+            "data_type": "any"
+          },
+          {
+            "title": "Since your down payment is less than 20%, we require private mor",
+            "variable": "step_924",
+            "data_type": "any"
+          },
+          {
+            "title": "Excellent! {variable} will reach out via email on the next step ",
+            "variable": "step_952",
+            "data_type": "any"
+          },
+          {
+            "title": "Are you currently working with a loan officer?",
+            "variable": "step_981",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "action_28116",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "steps": [
+          {
+            "step": "step_117",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Your account balance for "
+                          },
+                          {
+                            "variable": "step_626"
+                          },
+                          {
+                            "scalar": " is \\$342.48"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_117"
+          },
+          {
+            "step": "step_626",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "I would be happy to assist you, which account would you like to verify?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Checking",
+                      "value": {
+                        "input": {
+                          "text": "Checking"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Savings",
+                      "value": {
+                        "input": {
+                          "text": "Savings"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Money Market",
+                      "value": {
+                        "input": {
+                          "text": "Money Market"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I didn't catch that. Select a valid option:"
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_18524",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_626",
+            "next_step": "step_117"
+          }
+        ],
+        "title": "Verify account balance",
+        "action": "action_6255",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_6255_intent_5202"
+        },
+        "variables": [
+          {
+            "title": "Your account balance for {variable} is \\$342.48",
+            "variable": "step_117",
+            "data_type": "any"
+          },
+          {
+            "title": "I would be happy to assist you, which account would you like to ",
+            "variable": "step_626",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "action_26054",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "steps": [
+          {
+            "step": "step_001",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "I'm afraid I don't understand. Please rephrase your question."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_001",
+            "condition": {
+              "lte": [
+                {
+                  "system_variable": "no_action_matches_count"
+                },
+                {
+                  "scalar": 3
+                }
+              ]
+            },
+            "next_step": "step_002"
+          },
+          {
+            "step": "step_002",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": ""
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action_and_end",
+              "invoke_action": {
+                "action": "fallback",
+                "parameters": null,
+                "result_variable": "step_002_result_1"
+              }
+            },
+            "variable": "step_002",
+            "condition": {
+              "gt": [
+                {
+                  "system_variable": "no_action_matches_count"
+                },
+                {
+                  "scalar": 3
+                }
+              ]
+            }
+          }
+        ],
+        "title": "No action matches",
+        "action": "anything_else",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "expression": "anything_else"
+        },
+        "variables": [
+          {
+            "title": "I am afraid I do not understand what you are asking, please re-p",
+            "variable": "step_001",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_002",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_002_result_1",
+            "data_type": "any"
+          }
+        ],
+        "disambiguation_opt_out": true
+      },
+      {
+        "steps": [
+          {
+            "step": "step_001",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "I'm afraid I don't understand. I can connect you to an agent."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Let's send you to an available agent."
+                },
+                "agent_unavailable": {
+                  "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "step_001",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "Step validation failed"
+                }
+              ]
+            },
+            "next_step": "step_002"
+          },
+          {
+            "step": "step_002",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "Sorry I couldn't assist you. I will connect you to an agent right away."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Let's send you to an available agent."
+                },
+                "agent_unavailable": {
+                  "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "step_002",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "Agent requested"
+                }
+              ]
+            },
+            "next_step": "step_003"
+          },
+          {
+            "step": "step_003",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "I am afraid I do not understand what you are asking, let me connect you to an agent."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Let's send you to an available agent."
+                },
+                "agent_unavailable": {
+                  "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "step_003",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "No action matches"
+                }
+              ]
+            }
+          }
+        ],
+        "title": "Fallback",
+        "action": "fallback",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "fallback_connect_to_agent"
+        },
+        "variables": [
+          {
+            "title": "I'm afraid I don't understand. I can connect you to an agent.",
+            "variable": "step_001",
+            "data_type": "any"
+          },
+          {
+            "title": "Sorry I couldn't assist you. I will connect you to an agent righ",
+            "variable": "step_002",
+            "data_type": "any"
+          },
+          {
+            "title": "I am afraid I do not understand what you are asking, let me conn",
+            "variable": "step_003",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "anything_else",
+        "disambiguation_opt_out": true
+      },
+      {
+        "steps": [
+          {
+            "step": "step_001",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "Welcome, how can I assist you?"
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_001"
+          }
+        ],
+        "title": "Greet customer",
+        "action": "welcome",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "expression": "welcome"
+        },
+        "variables": [
+          {
+            "variable": "step_001",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "action_6255",
+        "disambiguation_opt_out": true
+      }
+    ],
+    "intents": [
+      {
+        "intent": "action_10877_intent_11874",
+        "examples": [
+          {
+            "text": "can you help me find the CVV"
+          },
+          {
+            "text": "What is a CVV?"
+          },
+          {
+            "text": "what is the card verification value"
+          }
+        ]
+      },
+      {
+        "intent": "action_23490_intent_26219",
+        "examples": [
+          {
+            "text": "What is PMI?"
+          },
+          {
+            "text": "What is private mortgage insurance?"
+          },
+          {
+            "text": "What's PMI?"
+          }
+        ]
+      },
+      {
+        "intent": "action_26054_intent_26914",
+        "examples": [
+          {
+            "text": "Can I use my credit card in other countries?"
+          },
+          {
+            "text": "I want to use my card in other countries"
+          }
+        ]
+      },
+      {
+        "intent": "action_27664_intent_10889",
+        "examples": [
+          {
+            "text": "I need some cash"
+          },
+          {
+            "text": "I need to withdraw cash"
+          },
+          {
+            "text": "I want to take money out"
+          },
+          {
+            "text": "I want to withdraw money"
+          },
+          {
+            "text": "withdrawal"
+          },
+          {
+            "text": "withdraw money"
+          }
+        ]
+      },
+      {
+        "intent": "action_28116_intent_28612",
+        "examples": [
+          {
+            "text": "I want to dispute a transaction"
+          }
+        ]
+      },
+      {
+        "intent": "action_4966_intent_42079",
+        "examples": [
+          {
+            "text": "I want to apply for a mortgage"
+          }
+        ]
+      },
+      {
+        "intent": "action_6255_intent_5202",
+        "examples": [
+          {
+            "text": "check account balance"
+          },
+          {
+            "text": "how much money do i have"
+          },
+          {
+            "text": "Verify account balance"
+          }
+        ]
+      },
+      {
+        "intent": "fallback_connect_to_agent",
+        "examples": [
+          {
+            "text": "Agent help"
+          },
+          {
+            "text": "Call agent"
+          },
+          {
+            "text": "Can I connect to an agent?"
+          },
+          {
+            "text": "I would like to speak to a human"
+          },
+          {
+            "text": "I would like to speak to someone"
+          }
+        ],
+        "description": "Please transfer me to an agent"
+      }
+    ],
+    "entities": [
+      {
+        "entity": "entity_10958",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "No",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Yes",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "entity_16327",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "Checking account",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Savings account",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "entity_1761",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "First St",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Main St",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "entity_18524",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "Checking",
+            "synonyms": [
+              "checking account"
+            ]
+          },
+          {
+            "type": "synonyms",
+            "value": "Money Market",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Savings",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "entity_23147",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "No",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Yes",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "entity_26233",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "Cash-out refinance",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "No cash-out refinance",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Permanent-to-Construction",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Purchase a home",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "entity_34077",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "No",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Yes",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "entity_47219",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "Billy Wright",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Greg Jones",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Joan Smith",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "sys-currency",
+        "values": []
+      },
+      {
+        "entity": "sys-date",
+        "values": []
+      },
+      {
+        "entity": "sys-number",
+        "values": []
+      },
+      {
+        "entity": "sys-percentage",
+        "values": []
+      }
+    ],
+    "metadata": {
+      "api_version": {
+        "major_version": "v2",
+        "minor_version": "2018-11-08"
+      }
+    },
+    "variables": [
+      {
+        "title": "calc_dp",
+        "variable": "calc_dp",
+        "data_type": "number",
+        "description": ""
+      },
+      {
+        "title": "down_payment",
+        "variable": "down_payment",
+        "data_type": "any",
+        "description": ""
+      },
+      {
+        "title": "downpayment",
+        "variable": "downpayment",
+        "data_type": "percentage",
+        "description": "Down payment percentage"
+      },
+      {
+        "title": "dp",
+        "variable": "dp",
+        "data_type": "number",
+        "description": ""
+      }
+    ],
+    "data_types": [],
+    "counterexamples": [],
+    "system_settings": {
+      "topic_switch": {
+        "enabled": true,
+        "messages": {
+          "confirm_return": {
+            "text": "Return to previous topic?"
+          },
+          "confirm_switch": {
+            "text": "Switch from the current topic?"
+          }
+        },
+        "question_steps_threshold": 2
+      },
+      "disambiguation": {
+        "prompt": "Did you mean:",
+        "enabled": true,
+        "randomize": true,
+        "max_suggestions": 5,
+        "suggestion_text_policy": "title",
+        "none_of_the_above_prompt": "None of the above"
+      },
+      "intent_classification": {
+        "training_backend_version": "v2"
+      },
+      "spelling_auto_correct": true
+    },
+    "learning_opt_out": false
+  },
+  "description": "created for assistant 5f458525-32fc-4b9d-a8d9-ce3b6c44b98a",
+  "assistant_id": "10ea2534-fc82-439b-8a75-91f08cf3d08d",
+  "workspace_id": "d728aba3-fe14-4a52-bb97-0680bff98828",
+  "dialog_settings": {},
+  "next_snapshot_version": "2"
+}
