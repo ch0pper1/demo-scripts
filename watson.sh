@@ -36,7 +36,6 @@ wget -O /root/da/sec.js https://raw.githubusercontent.com/garrettrowe/watsonAuto
 fi
 # downgrade node and npm
 npm install --location=global npm@6
-npm install -g node@14
 
 wget -O /root/.node-red/flows_$(< /root/resourceGroup.txt)-vsi.json https://raw.githubusercontent.com/ch0pper1/demo-scripts/master/flowsV3.json
 wget -O /root/discovery.tgz https://raw.githubusercontent.com/ch0pper1/demo-scripts/master/discoV2.tgz
