@@ -1,0 +1,42 @@
+{
+  "name": "discovery-search-app",
+  "version": "1.0.0",
+  "description": "Discovery V2 demo app",
+  "author": "Garrett Rowe",
+  "main": "node server.js",
+  "scripts": {
+    "start": "node --max-http-header-size=20000 server.js"
+  },
+  "dependencies": {
+    "@carbon/icons-react": "^10.33.0",
+    "@ibm-watson/discovery-react-components": "file:./packages/discovery-react-components",
+    "@ibm-watson/discovery-styles": "file:./packages/discovery-styles",
+    "body-parser": "^1.19.0",
+    "carbon-components": "^10.36.0",
+    "carbon-components-react": "^7.36.0",
+    "classnames": "^2.2.6",
+    "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "http-proxy-middleware": "^0.20.0",
+    "ibm-watson": "file:./packages/ibm-watson",
+    "prop-types": "^15.6.2",
+    "proper-url-join": "^2.1.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "engines": {
+    "node": "^15.9.0",
+    "npm": "^7.5.3"
+  },
+  "browserslist": [
+    "Android 2.3",
+    "Android >= 4",
+    "Chrome >= 35",
+    "Firefox >= 31",
+    "Explorer >= 9",
+    "iOS >= 7",
+    "Opera >= 12",
+    "Safari >= 7.1"
+  ]
+}

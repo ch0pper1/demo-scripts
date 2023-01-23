@@ -1,0 +1,57 @@
+.#{$prefix}--ci-doc-metadata {
+  .section {
+    padding: $spacing-04 $spacing-06;
+
+    &:first-child {
+      padding-top: $spacing-06;
+    }
+
+    &:not(:first-child) {
+      border-top: 1px solid $ui-03;
+    }
+
+    &:last-child {
+      padding-bottom: $spacing-06;
+    }
+  }
+
+  .group {
+    &:not(:first-child) {
+      margin-top: $spacing-04;
+    }
+
+    .group-title {
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: $text-02;
+      line-height: 1rem;
+      margin-bottom: $spacing-02;
+    }
+
+    li {
+      &:not(:first-child) {
+        margin-top: $spacing-02;
+      }
+
+      a,
+      .link {
+        font-size: 0.875rem;
+        display: inline-block;
+        vertical-align: bottom;
+      }
+
+      svg {
+        margin-right: $spacing-03;
+        cursor: help;
+      }
+
+      .selected {
+        font-weight: bold;
+
+        &:focus {
+          box-shadow: none;
+        }
+      }
+    }
+  }
+}

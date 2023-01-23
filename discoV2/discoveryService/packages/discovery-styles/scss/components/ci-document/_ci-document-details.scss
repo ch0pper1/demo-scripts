@@ -1,0 +1,56 @@
+.#{$prefix}--ci-doc-details {
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: $text-02;
+
+  * {
+    font-size: 0.875rem;
+    line-height: 1;
+  }
+
+  .title {
+    font-weight: bold;
+    padding: $spacing-05;
+  }
+
+  .nothingSelected {
+    padding-left: $spacing-05;
+    color: $text-02;
+  }
+
+  .section {
+    padding: $spacing-05;
+    border-top: 1px solid $ui-03;
+  }
+
+  .sectionHeader {
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-bottom: $spacing-04;
+  }
+
+  .selected {
+    font-weight: bold;
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  .content {
+    margin-bottom: $spacing-03;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .display-name {
+      margin-bottom: $spacing-02;
+    }
+  }
+
+  .bx--link {
+    color: $link-01;
+  }
+}

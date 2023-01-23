@@ -1,0 +1,56 @@
+.#{$prefix}--preview-toolbar {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  background-color: #eaeaea;
+  height: $spacing-08;
+}
+
+.#{$prefix}--preview-toolbar__nav {
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+.#{$prefix}--preview-toolbar__button {
+  padding-left: $spacing-03 !important;
+  padding-right: $spacing-03 !important;
+}
+
+.#{$prefix}--preview-toolbar__input {
+  text-align: center;
+  max-width: $layout-lg;
+  height: $spacing-07;
+}
+
+// removes number wheel buttons from input (chrome and safari)
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+// removes number wheel buttons from input (firefox)
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.#{$prefix}--preview-toolbar__pageLabel {
+  margin: auto;
+  padding-left: $spacing-03;
+  padding-right: $spacing-03;
+}
+
+.#{$prefix}--preview-toolbar__spacer,
+.#{$prefix}--preview-toolbar__zoom {
+  flex: 1 1 50%;
+}
+
+.#{$prefix}--preview-toolbar__zoom {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: $spacing-05;
+}

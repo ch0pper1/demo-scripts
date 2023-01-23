@@ -1,0 +1,21 @@
+@import '../../vars';
+@import './mixins';
+
+.#{$prefix}--html {
+  max-width: 80ch;
+  margin: 0 auto;
+  position: relative;
+
+  @include htmlReset;
+  @include htmlOverride;
+
+  .field--rect {
+    position: absolute;
+    background-color: $highlight;
+  }
+}
+
+.#{$prefix}--html__content {
+  // needed so that absolutely positioned `.field--rect`s render underneath text
+  position: relative;
+}
