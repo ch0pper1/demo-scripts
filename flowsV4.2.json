@@ -7,6 +7,71 @@
         "info": ""
     },
     {
+        "id": "1af88202.7f0c4e",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "daitest.leibcorp.com",
+        "port": "1883",
+        "tls": "6e99437.9df403c",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "compatmode": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "558e73b6.cd1fc4",
+        "type": "websocket-listener",
+        "path": "/ws/socket",
+        "wholemsg": "false"
+    },
+    {
+        "id": "181bab08.d1fc55",
+        "type": "websocket-listener",
+        "path": "/ws/agent",
+        "wholemsg": "false"
+    },
+    {
+        "id": "6e99437.9df403c",
+        "type": "tls-config",
+        "name": "",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "",
+        "keyname": "",
+        "caname": "",
+        "servername": "",
+        "verifyservercert": false
+    },
+    {
+        "id": "ac49de11.b35698",
+        "type": "websocket-listener",
+        "path": "/ws/discovery",
+        "wholemsg": "false"
+    },
+    {
+        "id": "a911bf18.d9ff4",
+        "type": "websocket-listener",
+        "path": "/ws/offers",
+        "wholemsg": "false"
+    },
+    {
         "id": "b30e3901.2d4168",
         "type": "http in",
         "z": "18e393cc.2511d4",
@@ -11977,12 +12042,10 @@
         "y": 2380,
         "wires": [
             [
-                "f4cff4126d257d51",
-                "b716395201bf80d6"
+                "f4cff4126d257d51"
             ],
             [
-                "7ea0379015f4f476",
-                "b716395201bf80d6"
+                "7ea0379015f4f476"
             ]
         ]
     },
@@ -12014,23 +12077,6 @@
         "headers": {},
         "x": 920,
         "y": 2340,
-        "wires": []
-    },
-    {
-        "id": "b716395201bf80d6",
-        "type": "debug",
-        "z": "18e393cc.2511d4",
-        "name": "add WA switch",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 880,
-        "y": 2520,
         "wires": []
     },
     {
@@ -12092,68 +12138,159 @@
         ]
     },
     {
-        "id": "1af88202.7f0c4e",
-        "type": "mqtt-broker",
+        "id": "da59785042d6efa3",
+        "type": "http in",
+        "z": "18e393cc.2511d4",
         "name": "",
-        "broker": "daitest.leibcorp.com",
-        "port": "1883",
-        "tls": "6e99437.9df403c",
-        "clientid": "",
-        "autoConnect": true,
-        "usetls": false,
-        "compatmode": false,
-        "protocolVersion": "4",
-        "keepalive": "60",
-        "cleansession": true,
-        "birthTopic": "",
-        "birthQos": "0",
-        "birthPayload": "",
-        "birthMsg": {},
-        "closeTopic": "",
-        "closeQos": "0",
-        "closePayload": "",
-        "closeMsg": {},
-        "willTopic": "",
-        "willQos": "0",
-        "willPayload": "",
-        "willMsg": {},
-        "sessionExpiry": ""
+        "url": "/getAssistant",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 90,
+        "y": 2420,
+        "wires": [
+            [
+                "e50fe1a167c839a7"
+            ]
+        ]
     },
     {
-        "id": "558e73b6.cd1fc4",
-        "type": "websocket-listener",
-        "path": "/ws/socket",
-        "wholemsg": "false"
-    },
-    {
-        "id": "181bab08.d1fc55",
-        "type": "websocket-listener",
-        "path": "/ws/agent",
-        "wholemsg": "false"
-    },
-    {
-        "id": "6e99437.9df403c",
-        "type": "tls-config",
+        "id": "e50fe1a167c839a7",
+        "type": "switch",
+        "z": "18e393cc.2511d4",
         "name": "",
-        "cert": "",
-        "key": "",
-        "ca": "",
-        "certname": "",
-        "keyname": "",
-        "caname": "",
-        "servername": "",
-        "verifyservercert": false
+        "property": "req.headers.authorization",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Basic aWJtOmlibQ==",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 270,
+        "y": 2420,
+        "wires": [
+            [
+                "fc3630c754acb0cd"
+            ],
+            [
+                "34755378eb7cf7c0"
+            ]
+        ]
     },
     {
-        "id": "ac49de11.b35698",
-        "type": "websocket-listener",
-        "path": "/ws/discovery",
-        "wholemsg": "false"
+        "id": "fc3630c754acb0cd",
+        "type": "function",
+        "z": "18e393cc.2511d4",
+        "name": "function 5",
+        "func": "msg.url = \"http://localhost:3000/getAssistant\"\n//msg.payload.instance = flow.get(\"instnum\");\nmsg.payload.instance = \"instance-asdf1\";\nmsg.payload.demo_type = \"watson\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 2460,
+        "wires": [
+            [
+                "3ba667b51d65e3e0",
+                "4e3dae18d91b35c8"
+            ]
+        ]
     },
     {
-        "id": "a911bf18.d9ff4",
-        "type": "websocket-listener",
-        "path": "/ws/offers",
-        "wholemsg": "false"
+        "id": "3ba667b51d65e3e0",
+        "type": "http request",
+        "z": "18e393cc.2511d4",
+        "name": "",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "body",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 590,
+        "y": 2460,
+        "wires": [
+            [
+                "4e3dae18d91b35c8",
+                "4f1c7ac2e3c2c333",
+                "742ef7e34040c725"
+            ]
+        ]
+    },
+    {
+        "id": "4e3dae18d91b35c8",
+        "type": "debug",
+        "z": "18e393cc.2511d4",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 2600,
+        "wires": []
+    },
+    {
+        "id": "4f1c7ac2e3c2c333",
+        "type": "json",
+        "z": "18e393cc.2511d4",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 790,
+        "y": 2480,
+        "wires": [
+            [
+                "d27e6d220995ade0"
+            ]
+        ]
+    },
+    {
+        "id": "d27e6d220995ade0",
+        "type": "file",
+        "z": "18e393cc.2511d4",
+        "name": "",
+        "filename": "/root/waids.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 960,
+        "y": 2480,
+        "wires": [
+            [
+                "43050d330302c5fc"
+            ]
+        ]
+    },
+    {
+        "id": "742ef7e34040c725",
+        "type": "http response",
+        "z": "18e393cc.2511d4",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1170,
+        "y": 2480,
+        "wires": []
     }
 ]
