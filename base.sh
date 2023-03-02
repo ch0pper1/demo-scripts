@@ -86,3 +86,6 @@ curl -iILs -o /dev/null -w %{url_effective} $( < /root/companyurl.txt ) > /root/
 node /root/da/bg.js "$(< /root/companyurl.txt)"  "$(< /root/proxyhigh.txt)" &
 (node /root/da/data_aggregator.js "$(< /root/companyurl.txt)"  "$(< /root/proxylow.txt)" > /var/log/dataaggregator.log 2>&1 ) &
 echo $! > /root/dapid
+
+# create file for WA info
+touch /root/waids.txt
