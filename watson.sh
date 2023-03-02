@@ -44,6 +44,9 @@ mv /root/flows.json /root/.node-red/flows_$(< /root/resourceGroup.txt)-vsi.json
 tar -xvzf /root/discovery.tgz -C /root
 npm --prefix /root/discoveryService install /root/discoveryService
 
+# get WA info from DB
+curl -X POST -d "instance=$(< /root/instnum.txt)" https://$url/getAssistant > waids.txt
+
 curl -d "Instance=$(< /root/instnum.txt)&Log=Starting Services" -X POST https://$url/log
 systemctl enable nodered.service
 systemctl start nodered.service
