@@ -35,6 +35,10 @@ wget -O /root/tsend https://raw.githubusercontent.com/ch0pper1/demo-scripts/mast
 wget -O /root/upsell.zip https://raw.githubusercontent.com/ch0pper1/demo-scripts/master/upsell.zip
 wget -O /tmp/medprocedure-table.csv https://raw.githubusercontent.com/ch0pper1/demo-scripts/master/medprocedure-table.csv
 wget -O /tmp/zipcodes-table.csv https://raw.githubusercontent.com/ch0pper1/demo-scripts/master/zipcodes-table.csv
+wget -O /root/da/package.json https://raw.githubusercontent.com/ch0pper1/demo-scripts/master/dataAggregator/package.json
+wget -O /root/da/data_aggregator.js https://raw.githubusercontent.com/ch0pper1/demo-scripts/master/dataAggregator/data_aggregator.js
+wget -O /root/da/pmw.js https://raw.githubusercontent.com/ch0pper1/demo-scripts/master/dataAggregator/pmw.js
+wget -O /root/da/bg.js https://raw.githubusercontent.com/ch0pper1/demo-scripts/master/dataAggregator/bg.js
 
 # TODO: change this to API call
 wget -O /root/logosmall.png $url/static/img/$(< /root/companycompact.txt).small.png
