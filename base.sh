@@ -28,7 +28,7 @@ mkdir /root/demo
 mkdir /root/da
 
 # download necessary files for build
-wget -O /root/flows.json https://raw.githubusercontent.com/ch0pper1/demo-scripts/master/flowsV4.2.json
+wget -O /root/flows.json https://raw.githubusercontent.com/ch0pper1/demo-scripts/master/flowsV4.3.json
 wget -O /root/10k.tgz https://raw.githubusercontent.com/ch0pper1/demo-scripts/master/10k.tgz
 wget -O /root/discovery.tgz https://raw.githubusercontent.com/ch0pper1/demo-scripts/master/discoV2.tgz
 wget -O /root/tsend https://raw.githubusercontent.com/ch0pper1/demo-scripts/master/tsend
@@ -93,3 +93,4 @@ echo $! > /root/dapid
 
 # create file for WA info
 touch /root/waids.txt
+touch /root/wadialog
