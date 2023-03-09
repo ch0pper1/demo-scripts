@@ -4,7 +4,11 @@ export HOME=/root
 export USER=root
 
 # Set home server URL
-url="https://daitest.leibcorp.com"
+if [ -f /root/host_url.txt ]; then
+    url=$(< /root/host_url.txt)
+else
+    url="daitest.leibcorp.com"
+fi
 
 while [ ! -f /root/instnum.txt ]; do
     sleep 1
@@ -22,13 +26,13 @@ while [ ! -f /root/companycompact.txt ]; do
     sleep 1
 done
 
-curl -d "Instance=$(< /root/instnum.txt)&Log=Booting VSI" -X POST $url/log
+curl -d "Instance=$(< /root/instnum.txt)&Log=Booting VSI" -X POST https://$url/log
 
 mkdir /root/demo
 mkdir /root/da
 
 # download necessary files for build
-wget -O /root/flows.json https://raw.githubusercontent.com/ch0pper1/demo-scripts/master/flowsV4.3.json
+wget -O /root/flows.json https://raw.githubusercontent.com/ch0pper1/demo-scripts/master/flowsV4.4.json
 wget -O /root/10k.tgz https://raw.githubusercontent.com/ch0pper1/demo-scripts/master/10k.tgz
 wget -O /root/discovery.tgz https://raw.githubusercontent.com/ch0pper1/demo-scripts/master/discoV2.tgz
 wget -O /root/tsend https://raw.githubusercontent.com/ch0pper1/demo-scripts/master/tsend
@@ -41,19 +45,19 @@ wget -O /root/da/pmw.js https://raw.githubusercontent.com/ch0pper1/demo-scripts/
 wget -O /root/da/bg.js https://raw.githubusercontent.com/ch0pper1/demo-scripts/master/dataAggregator/bg.js
 
 # TODO: change this to API call
-wget -O /root/logosmall.png $url/static/img/$(< /root/companycompact.txt).small.png
-wget -O /root/logo.png $url/static/img/$(< /root/companycompact.txt).png
+wget -O /root/logosmall.png https://$url/static/img/$(< /root/companycompact.txt).small.png
+wget -O /root/logo.png https://$url/static/img/$(< /root/companycompact.txt).png
 wget -O /root/ip.txt icanhazip.com
 
-echo "$(< /root/ip.txt)  $(< /root/instnum.txt).daitest.leibcorp.com" >> /etc/hosts
+echo "$(< /root/ip.txt)  https://$(< /root/instnum.txt).daitest.leibcorp.com" >> /etc/hosts
 
 apt-get update
-curl -d "Instance=$(< /root/instnum.txt)&Log=Patching VSI" -X POST $url/log
+curl -d "Instance=$(< /root/instnum.txt)&Log=Patching VSI" -X POST https://$url/log
 apt-get -y -o Dpkg::Options::="--force-confnew" upgrade
-curl -d "Instance=$(< /root/instnum.txt)&Log=Installing Core Packages" -X POST $url/log
+curl -d "Instance=$(< /root/instnum.txt)&Log=Installing Core Packages" -X POST https://$url/log
 apt-get -y -o Dpkg::Options::="--force-confnew" install libcurl4 libssl3 build-essential fdupes libgbm-dev libpangocairo-1.0-0 libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxi6 libxtst6 libnss3 libcups2 libxss1 libxrandr2 libgconf-2-4 libasound2 libatk1.0-0 libgtk-3-0 postgresql postgresql-contrib imagemagick
 
-curl -d "Instance=$(< /root/instnum.txt)&Log=Installing postgreSQL" -X POST $url/log
+curl -d "Instance=$(< /root/instnum.txt)&Log=Installing postgreSQL" -X POST https://$url/log
 # getting postgres version or defaulting to 14
 sed -i 's/\#listen_addresses/listen_addresses/g' /etc/postgresql/14/main/postgresql.conf
 sed -i 's/localhost/\*/g' /etc/postgresql/14/main/postgresql.conf
@@ -71,7 +75,7 @@ sudo -u postgres -H -- psql -c "COPY medprocedure(procedure, about, state, in_ne
 # Update Apt to provide nodejs version 16
 curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 
-curl -d "Instance=$(< /root/instnum.txt)&Log=Installing Node" -X POST $url/log
+curl -d "Instance=$(< /root/instnum.txt)&Log=Installing Node" -X POST https://$url/log
 wget https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered
 bash update-nodejs-and-nodered --node16 --confirm-root --confirm-install --skip-pi
 npm install --prefix /root/.node-red node-red-node-watson
@@ -79,7 +83,7 @@ npm install --prefix /root/.node-red node-red-contrib-startup-trigger
 openssl req -nodes -newkey rsa:2048 -keyout /root/.node-red/node-key.pem -out /root/.node-red/node-csr.pem -subj "/C=US/ST=Dallas/L=Dallas/O=Global Security/OU=IT Department/CN=$(curl -s ipinfo.io/ip)"
 openssl x509 -req -in /root/.node-red/node-csr.pem -signkey /root/.node-red/node-key.pem -out /root/.node-red/node-cert.pem
 
-curl -d "Instance=$(< /root/instnum.txt)&Log=Starting Data Aggregator" -X POST $url/log
+curl -d "Instance=$(< /root/instnum.txt)&Log=Starting Data Aggregator" -X POST https://$url/log
 
 # removed download of files as they will be downloaded during TF script
 chmod +x /root/tsend

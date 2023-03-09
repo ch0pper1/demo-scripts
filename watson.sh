@@ -4,7 +4,11 @@ export HOME=/root
 export USER=root
 
 # Set home server URL
-url="daitest.leibcorp.com"
+if [ -f /root/host_url.txt ]; then
+    url=$(< /root/host_url.txt)
+else
+    url="daitest.leibcorp.com"
+fi
 
 while [ ! -f /root/instnum.txt ]; do
     sleep 1
