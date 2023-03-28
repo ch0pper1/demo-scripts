@@ -31,6 +31,7 @@ done
 
 curl -d "Instance=$(< /root/instnum.txt)&Log=Localizing: $(< /root/industry.txt)/$(< /root/demo.txt) " -X POST https://$url/log
 wget -O /root/secData.txt "https://$url/secData?company=$(< /root/companytitle.txt)"
+wget -O /root/finance_dte_model.zip https://ibm.box.com/shared/static/h7sca2gyrz0az58vicqlqijh1mvtl71u.zip
 
 dvar=`cat /root/secData.txt | grep -c 'none'`
 if [ $dvar -gt 0 ]
