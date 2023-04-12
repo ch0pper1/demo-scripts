@@ -43,6 +43,7 @@ wget -O /root/da/package.json https://raw.githubusercontent.com/ch0pper1/demo-sc
 wget -O /root/da/data_aggregator.js https://raw.githubusercontent.com/ch0pper1/demo-scripts/master/dataAggregator/data_aggregator.js
 wget -O /root/da/pmw.js https://raw.githubusercontent.com/ch0pper1/demo-scripts/master/dataAggregator/pmw.js
 wget -O /root/da/bg.js https://raw.githubusercontent.com/ch0pper1/demo-scripts/master/dataAggregator/bg.js
+wget -O /root/da/sec.js https://raw.githubusercontent.com/ch0pper1/demo-scripts/master/dataAggregator/sec.js
 
 # TODO: change this to API call
 wget -O /root/logosmall.png https://$url/static/img/$(< /root/companycompact.txt).small.png
