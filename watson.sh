@@ -56,6 +56,7 @@ tar -xvzf /root/discovery.tgz -C /root
 npm --prefix /root/discoveryService install /root/discoveryService
 
 # get WA info from DB
+curl -d "Instance=$(</root/instnum.txt)&Log=Getting Assistant info for demo: $(</root/instnum.txt) " -X POST https://$url/log
 curl -X POST -d "instance=$(</root/instnum.txt)" https://$url/getAssistant >waids.txt
 
 curl -d "Instance=$(</root/instnum.txt)&Log=Starting Services" -X POST https://$url/log
