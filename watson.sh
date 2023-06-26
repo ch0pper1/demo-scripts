@@ -33,20 +33,20 @@ curl -d "Instance=$(</root/instnum.txt)&Log=Localizing: $(</root/industry.txt)/$
 wget -O /root/secData.txt "https://$url/secData?company=$(</root/companytitle.txt)"
 wget -O /root/finance_dte_model.zip https://ibm.box.com/shared/static/h7sca2gyrz0az58vicqlqijh1mvtl71u.zip
 
-dvar=$(cat /root/secData.txt | grep -c 'none')
-if [ $dvar -gt 0 ]; then
-    wget -O /root/secData.txt "https://daidemos.com/secData?company=$(</root/companytitle.txt)"
-    dvar2=$(cat /root/secData.txt | grep -c 'none')
-    if [ $dvar2 -gt 0]; then
-        tar -xvzf /root/10k.tgz -C /root
-    else
-        mkdir /root/10k
-        (node /root/da/sec.js "$(</root/secData.txt)" >/var/log/secData.log 2>&1) &
-    fi
-else
-    mkdir /root/10k
-    (node /root/da/sec.js "$(</root/secData.txt)" >/var/log/secData.log 2>&1) &
-fi
+# dvar=$(cat /root/secData.txt | grep -c 'none')
+# if [ $dvar -gt 0 ]; then
+#     wget ---O /root/secData.txt "https://daidemos.com/secData?company=$(</root/companytitle.txt)"
+#     dvar2=$(cat /root/secData.txt | grep -c 'none')
+#     if [ $dvar2 -gt 0]; then
+#         tar -xvzf /root/10k.tgz -C /root
+#     else
+#         mkdir /root/10k
+#         (node /root/da/sec.js "$(</root/secData.txt)" >/var/log/secData.log 2>&1) &
+#     fi
+# else
+#     mkdir /root/10k
+#     (node /root/da/sec.js "$(</root/secData.txt)" >/var/log/secData.log 2>&1) &
+# fi
 # downgrade node and npm
 npm install --location=global npm@6
 
