@@ -56,15 +56,16 @@ apt-get update
 curl -d "Instance=$(< /root/instnum.txt)&Log=Patching VSI" -X POST https://$url/log
 apt-get -y -o Dpkg::Options::="--force-confnew" upgrade
 curl -d "Instance=$(< /root/instnum.txt)&Log=Installing Core Packages" -X POST https://$url/log
-apt-get -y -o Dpkg::Options::="--force-confnew" install libcurl4 libssl3 build-essential fdupes libgbm-dev libpangocairo-1.0-0 libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxi6 libxtst6 libnss3 libcups2 libxss1 libxrandr2 libgconf-2-4 libasound2 libatk1.0-0 libgtk-3-0 postgresql postgresql-contrib imagemagick
+apt-get -y -o Dpkg::Options::="--force-confnew" install libcurl4 libssl3 build-essential fdupes libgbm-dev libpangocairo-1.0-0 libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxi6 libxtst6 libnss3 libcups2 libxss1 libxrandr2 libgconf-2-4 libasound2 libatk1.0-0 libgtk-3-0 postgresql-12 postgresql-contrib imagemagick
 
-curl -d "Instance=$(< /root/instnum.txt)&Log=Installing postgreSQL" -X POST https://$url/log
-# getting postgres version or defaulting to 14
-psql_version=`pg_config --version  | awk '{print $2}' | cut -d . -f1`
-sed -i 's/\#listen_addresses/listen_addresses/g' /etc/postgresql/$psql_version/main/postgresql.conf
-sed -i 's/localhost/\*/g' /etc/postgresql/$psql_version/main/postgresql.conf
-sed -i 's/5432/16002/g' /etc/postgresql/$psql_version/main/postgresql.conf
-sed -i 's/\# TYPE/host  all  all 0.0.0.0\/0 md5\# TYPE/g' /etc/postgresql/$psql_version/main/pg_hba.conf
+# getting postgres version or defaulting to 12
+psql_version=$(pg_config --version  | awk '{print $2}' | cut -d . -f1)
+curl -d "Instance=$(< /root/instnum.txt)&Log=Installing postgreSQL version $psql_version" -X POST https://$url/log
+
+sed -i 's/\#listen_addresses/listen_addresses/g' /etc/postgresql/12/main/postgresql.conf
+sed -i 's/localhost/\*/g' /etc/postgresql/12/main/postgresql.conf
+sed -i 's/5432/16002/g' /etc/postgresql/12/main/postgresql.conf
+sed -i 's/\# TYPE/host  all  all 0.0.0.0\/0 md5\# TYPE/g' /etc/postgresql/12/main/pg_hba.conf
 service postgresql restart
 
 sudo -u postgres -H -- psql -c 'CREATE TABLE medprocedure (procedure varchar (2555), about varchar (2555), state varchar (255), in_network_cost decimal (16), out_of_network_cost decimal (16), medical_code varchar (255) ); CREATE TABLE zipcode (zip varchar (15), city varchar (255), county varchar (255), state varchar (255) ); CREATE TABLE "SEGMENT" ("ID" varchar (155), "ANONYMOUS_ID" varchar (155), "S_TIMESTAMP" timestamp, "EVENT" varchar (155),"EVENT_NAME" varchar (255),"CAMPAIGN_ID" varchar (155),"CAMPAIGN_NAME" varchar (255),"EVENT_DETAIL" varchar (999),"EVENT_BLOB" varchar (99999),"EVENT_LINK" varchar (999)); CREATE TABLE "SENTIMENT" ("USER" varchar (15), "ETIME" timestamp, "SCORE" decimal (8) ); CREATE TABLE "CALL_CLASSIFICATION" ("USER" varchar (15), "CLASS_NAME" varchar (255), "CONFIDENCE" decimal (16) ); CREATE TABLE "CALL_CLASSIFICATION_FINE" ("USER" varchar (15), "CLASS_NAME" varchar (255), "CONFIDENCE" decimal (16) ); CREATE TABLE "CALL_TONE" ("USER" varchar (15), "TONE_NAME" varchar (255), "SCORE" decimal (16) ); CREATE TABLE "CALL_RISK" ("USER" varchar (15), "RISK" decimal (8) ); CREATE TABLE "USERS" ("ID" varchar (11), "GENDER" varchar (1), "AGE" smallint, "MAIDEN_NAME" varchar (255), "LNAME" varchar (255), "FNAME" varchar (255), "ADDRESS" varchar (255), "CITY" varchar (255),"STATE" varchar (255), "ZIP" integer, "COUNTRY" varchar (255), "PHONE" bigint, "EMAIL" varchar (255), "CC_NUMBER" varchar (19), "MONTHLY_PAYMENT" smallint, "TOTAL_PAYMENTS" smallint, "LATITUDE" decimal (16), "LONGITUDE" decimal (16) ); CREATE TABLE "WIDGET_DATA" ("USER" varchar (15), "WIDGET_TYPE" varchar (50), "DATA_VALUE" varchar (10000), "DATA_ORDER" integer); CREATE VIEW "CALL_CLASSIFICATION_AVG_VW" AS SELECT "USER", "CLASS_NAME", sum("CONFIDENCE") as "CONFIDENCE" FROM "CALL_CLASSIFICATION" group by "USER", "CLASS_NAME" LIMIT 5;CREATE VIEW "CALL_CLASSIFICATIONFG" AS SELECT "USER", "CLASS_NAME", sum("CONFIDENCE") as "CONFIDENCE" FROM "CALL_CLASSIFICATION_FINE" group by "USER", "CLASS_NAME" LIMIT 5;'
