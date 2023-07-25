@@ -59,7 +59,7 @@ curl -d "Instance=$(< /root/instnum.txt)&Log=Installing Core Packages" -X POST h
 apt-get -y -o Dpkg::Options::="--force-confnew" install libcurl4 build-essential fdupes libgbm-dev libpangocairo-1.0-0 libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxi6 libxtst6 libnss3 libcups2 libxss1 libxrandr2 libgconf-2-4 libasound2 libatk1.0-0 libgtk-3-0 postgresql-12 postgresql-contrib imagemagick
 
 # getting postgres version or defaulting to 12
-psql_version=$(pg_config --version  | awk '{print $2}' | cut -d . -f1)
+psql_version=`pg_config --version  | awk '{print $2}' | cut -d . -f1`
 curl -d "Instance=$(< /root/instnum.txt)&Log=Installing postgreSQL version $psql_version" -X POST https://$url/log
 
 sed -i 's/\#listen_addresses/listen_addresses/g' /etc/postgresql/12/main/postgresql.conf
