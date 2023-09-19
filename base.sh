@@ -79,7 +79,7 @@ curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 
 curl -d "Instance=$(< /root/instnum.txt)&Log=Installing Node" -X POST https://$url/log
 wget https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered
-bash update-nodejs-and-nodered --node16 --confirm-root --confirm-install --skip-pi
+bash update-nodejs-and-nodered --node16 --confirm-root --confirm-install --skip-pi --nodered-version="3.0.2"
 npm install --prefix /root/.node-red node-red-node-watson
 npm install --prefix /root/.node-red node-red-contrib-startup-trigger
 openssl req -nodes -newkey rsa:2048 -keyout /root/.node-red/node-key.pem -out /root/.node-red/node-csr.pem -subj "/C=US/ST=Dallas/L=Dallas/O=Global Security/OU=IT Department/CN=$(curl -s ipinfo.io/ip)"
