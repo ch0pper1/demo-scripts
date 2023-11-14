@@ -50,7 +50,7 @@ wget -O /root/logosmall.png https://$url/static/img/$(< /root/companycompact.txt
 wget -O /root/logo.png https://$url/static/img/$(< /root/companycompact.txt).png
 wget -O /root/ip.txt icanhazip.com
 
-echo "$(< /root/ip.txt)  https://$(< /root/instnum.txt).daitest.leibcorp.com" >> /etc/hosts
+echo "$(< /root/ip.txt)  https://$(< /root/instnum.txt).$url" >> /etc/hosts
 
 apt-get update
 curl -d "Instance=$(< /root/instnum.txt)&Log=Patching VSI" -X POST https://$url/log
