@@ -10,7 +10,7 @@
         "id": "1af88202.7f0c4e",
         "type": "mqtt-broker",
         "name": "",
-        "broker": "daitest.leibcorp.com",
+        "broker": "daidemobuilder.techzone.ibm.com",
         "port": "1883",
         "tls": "6e99437.9df403c",
         "clientid": "",
@@ -20,6 +20,7 @@
         "protocolVersion": "4",
         "keepalive": "60",
         "cleansession": true,
+        "autoUnsubscribe": true,
         "birthTopic": "",
         "birthQos": "0",
         "birthPayload": "",
@@ -32,6 +33,7 @@
         "willQos": "0",
         "willPayload": "",
         "willMsg": {},
+        "userProps": "",
         "sessionExpiry": ""
     },
     {
@@ -7102,7 +7104,6 @@
             [
                 "a3030dd3.dd4e08",
                 "5f17e246.77f39c",
-                "6c7945322229681c",
                 "3e6549388422d8c1"
             ]
         ]
