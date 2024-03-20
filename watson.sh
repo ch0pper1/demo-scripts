@@ -56,3 +56,7 @@ curl -d "Instance=$(</root/instnum.txt)&Log=Starting Services" -X POST https://$
 systemctl enable nodered.service
 systemctl start nodered.service
 node /root/da/pmw.js "https://$(</root/instnum.txt)-target.$url/" "$(</root/companyurl.txt)" &
+
+# Perform logo downloads later in process
+wget -O /root/logosmall.png https://$url/static/img/$(</root/companycompact.txt).small.png
+wget -O /root/logo.png https://$url/static/img/$(</root/companycompact.txt).png

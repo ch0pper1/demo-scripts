@@ -46,8 +46,8 @@ wget -O /root/da/bg.js https://raw.githubusercontent.com/ch0pper1/demo-scripts/m
 wget -O /root/da/sec.js https://raw.githubusercontent.com/ch0pper1/demo-scripts/master/dataAggregator/sec.js
 
 # TODO: change this to API call
-wget -O /root/logosmall.png https://$url/static/img/$(</root/companycompact.txt).small.png
-wget -O /root/logo.png https://$url/static/img/$(</root/companycompact.txt).png
+# wget -O /root/logosmall.png https://$url/static/img/$(</root/companycompact.txt).small.png
+# wget -O /root/logo.png https://$url/static/img/$(</root/companycompact.txt).png
 wget -O /root/ip.txt icanhazip.com
 
 echo "$(</root/ip.txt)  https://$(</root/instnum.txt).$url" >>/etc/hosts
