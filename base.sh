@@ -56,7 +56,7 @@ apt-get update
 curl -d "Instance=$(</root/instnum.txt)&Log=Patching VSI" -X POST https://$url/log
 apt-get -y -o Dpkg::Options::="--force-confnew" upgrade
 curl -d "Instance=$(</root/instnum.txt)&Log=Installing Core Packages" -X POST https://$url/log
-apt-get -y -o Dpkg::Options::="--force-confnew" install libcurl4 libssl3 build-essential fdupes libgbm-dev libpangocairo-1.0-0 libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxi6 libxtst6 libnss3 libcups2 libxss1 libxrandr2 libgconf-2-4 libasound2 libatk1.0-0 libgtk-3-0 postgresql postgresql-contrib imagemagick
+apt-get -y -o Dpkg::Options::="--force-confnew" install libcurl4 libssl-dev build-essential fdupes libgbm-dev libpangocairo-1.0-0 libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxi6 libxtst6 libnss3 libcups2 libxss1 libxrandr2 libgconf-2-4 libasound2 libatk1.0-0 libgtk-3-0 postgresql postgresql-contrib imagemagick
 
 curl -d "Instance=$(</root/instnum.txt)&Log=Installing postgreSQL" -X POST https://$url/log
 # getting postgres version or defaulting to 14
